@@ -1,11 +1,10 @@
 package herschel
 
 import (
-	"net/http"
+	"context"
 
 	"github.com/pkg/errors"
 
-	"github.com/yuki2006/herschel/option"
 	sheets "google.golang.org/api/sheets/v4"
 )
 
@@ -15,22 +14,9 @@ type Client struct {
 }
 
 // NewClient returns a new instance
-func NewClient(option option.ClientOption) (*Client, error) {
-	client, err := option.GetClient()
-	if err != nil {
-		return nil, errors.Wrap(err, "failed to get client from option")
-	}
-	service, err := sheets.New(client)
-	if err != nil {
-		return nil, errors.Wrap(err, "failed to create service with client")
-	}
-
-	return &Client{service: service}, nil
-}
-
-// NewClient returns a new instance
-func NewClientWithHTTPClient(option option.ClientOption, client *http.Client) (*Client, error) {
-	service, err := sheets.New(client)
+func NewClient() (*Client, error) {
+	ctx := context.Background()
+	service, err := sheets.NewService(ctx)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to create service with client")
 	}
