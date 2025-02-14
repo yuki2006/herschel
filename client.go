@@ -1,6 +1,8 @@
 package herschel
 
 import (
+	"net/http"
+
 	"github.com/pkg/errors"
 
 	"github.com/yokoe/herschel/option"
@@ -18,6 +20,16 @@ func NewClient(option option.ClientOption) (*Client, error) {
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to get client from option")
 	}
+	service, err := sheets.New(client)
+	if err != nil {
+		return nil, errors.Wrap(err, "failed to create service with client")
+	}
+
+	return &Client{service: service}, nil
+}
+
+// NewClient returns a new instance
+func NewClientWithHTTPClient(option option.ClientOption, client *http.Client) (*Client, error) {
 	service, err := sheets.New(client)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to create service with client")
