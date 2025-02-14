@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/yokoe/herschel/option"
+	"github.com/yuki2006/herschel/option"
 )
 
 func TestWriting(t *testing.T) {

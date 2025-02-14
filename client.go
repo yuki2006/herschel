@@ -5,7 +5,7 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/yokoe/herschel/option"
+	"github.com/yokoe/yuki2006/option"
 	sheets "google.golang.org/api/sheets/v4"
 )
 
