@@ -1,4 +1,4 @@
-module github.com/yokoe/herschel
+module github.com/yuki2006/herschel
 
 go 1.17
 
