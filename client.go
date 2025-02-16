@@ -1,8 +1,6 @@
 package herschel
 
 import (
-	"context"
-
 	"github.com/pkg/errors"
 
 	sheets "google.golang.org/api/sheets/v4"
@@ -14,13 +12,7 @@ type Client struct {
 }
 
 // NewClient returns a new instance
-func NewClient() (*Client, error) {
-	ctx := context.Background()
-	service, err := sheets.NewService(ctx)
-	if err != nil {
-		return nil, errors.Wrap(err, "failed to create service with client")
-	}
-
+func NewClient(service *sheets.Service) (*Client, error) {
 	return &Client{service: service}, nil
 }
 
